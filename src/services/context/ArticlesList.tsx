@@ -33,7 +33,7 @@ const SeachArticlesProvider: React.FC<{ children: React.ReactNode }> = ({
           },
         ]
       );
-      setNumberOfPages(Math.round(response.data[0].totalHits / pageSize));
+      setNumberOfPages(Math.ceil(response.data[0].totalHits / pageSize));
       setCardsList(response.data);
     } catch {
       setCardsList([]);

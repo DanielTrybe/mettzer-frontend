@@ -18,9 +18,11 @@ import FavoriteCards from "components/Favorite/FavoriteCards";
 type CardProps = {
   card: cardProps;
   index: number;
+  delFav?: boolean;
+  setDelFav?: (value: boolean) => void;
 };
 
-function CompactCard({ card, index }: CardProps) {
+function CompactCard({ card, index, delFav, setDelFav }: CardProps) {
   const classes = useStyles();
   const [paperElevation, setPaperElevation] = useState(2);
   const [modalInfo, setModalInfo] = useState({
@@ -30,8 +32,6 @@ function CompactCard({ card, index }: CardProps) {
     description: "",
   });
   const [open, setOpen] = useState(false);
-
-  const navigate = useNavigate();
 
   const authorsReduce =
     card._source.authors.length > 0
@@ -118,7 +118,11 @@ function CompactCard({ card, index }: CardProps) {
               <button className={classes.btnLinks} onClick={handleOpenModal}>
                 Card Details
               </button>
-              <FavoriteCards card={card} />
+              <FavoriteCards
+                card={card}
+                delFav={delFav}
+                setDelFav={setDelFav}
+              />
             </Grid>
           </Card>
         </div>

@@ -14,7 +14,6 @@ function CardsTemplate() {
     page,
     pageSize,
     setPageSize,
-    getArticlesChangePage,
     numberOfPages,
   } = useArticlesContext();
 
