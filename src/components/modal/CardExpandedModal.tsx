@@ -8,16 +8,16 @@ import {
   Modal,
   Grid,
   Tooltip,
-  CircularProgress,
 } from "@mui/material";
 import { useStyles } from "./style";
 import { isValid, format } from "date-fns";
 
 type PopupDetails = {
   modalInfo: {
-    owner: string;
-    repository: string;
-    sha: string;
+    title: string;
+    authors: string;
+    types: string;
+    description: string;
   };
   setOpen: (value: boolean) => void;
   open: boolean;
@@ -50,12 +50,19 @@ function CardExpandedModal({ modalInfo, setOpen, open }: PopupDetails) {
     >
       <Fade in={open}>
         <Box className={classes.boxStyle}>
-          <Typography
-            className={classes.title}
-            variant="h5"
-            sx={{ mb: 2, mt: 1 }}
-          >
-            Card Details
+          <Typography variant="h5" className={classes.title}>
+            {modalInfo.title}
+          </Typography>
+          <Box className={classes.boxBorder}>
+            <Typography variant="subtitle1" className={classes.authors}>
+              Autores: {modalInfo.authors}
+            </Typography>
+            <Typography variant="subtitle1" className={classes.types}>
+              Tipos: {modalInfo.types}
+            </Typography>
+          </Box>
+          <Typography variant="body1" className={classes.description}>
+            {modalInfo.description}
           </Typography>
 
           <Grid sx={{ mt: 1, mr: 2 }} className={classes.gridBtn}>
