@@ -13,6 +13,7 @@ import { cardProps } from "services/context/types";
 import { PopoverCustom } from "components/Items";
 import { useStyles } from "./style";
 import CardExpandedModal from "components/modal/CardExpandedModal";
+import FavoriteCards from "components/Favorite/FavoriteCards";
 
 type CardProps = {
   card: cardProps;
@@ -117,6 +118,7 @@ function CompactCard({ card, index }: CardProps) {
               <button className={classes.btnLinks} onClick={handleOpenModal}>
                 Card Details
               </button>
+              <FavoriteCards card={card} />
             </Grid>
           </Card>
         </div>

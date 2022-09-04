@@ -5,7 +5,7 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 type CardProps = {
-  card: { _id: number };
+  card: { _id: string };
 };
 
 function FavoriteCards({ card }: CardProps) {
@@ -19,7 +19,7 @@ function FavoriteCards({ card }: CardProps) {
     } else {
       const parseCards = JSON.parse(getLocalCard);
       const filterCard = parseCards.find(
-        (card: cardProps) => card._id === card._id
+        (favCard: any) => favCard._id === card._id
       );
       filterCard ? setIsFav(true) : setIsFav(false);
     }
@@ -30,13 +30,20 @@ function FavoriteCards({ card }: CardProps) {
     if (getLocalCard) {
       const parseCards = JSON.parse(getLocalCard);
       const filterCard = parseCards.find(
-        (card: cardProps) => card._id === card._id
+        (favCard: any) => favCard._id === card._id
       );
       if (filterCard) {
         // se achar a pessoa quer deletar
+        const filtered = parseCards.filter(
+          (favCard: any) => favCard._id !== card._id
+        );
+        localStorage.setItem("@Mettzer:Favorites", JSON.stringify(filtered));
+        setIsFav(false);
       } else {
+        const organize = [...parseCards, card];
+        localStorage.setItem("@Mettzer:Favorites", JSON.stringify(organize));
+        setIsFav(true);
       }
-      filterCard ? setIsFav(true) : setIsFav(false);
     }
   };
 
