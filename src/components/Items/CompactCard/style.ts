@@ -16,6 +16,7 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
   },
   cardHeader: { maxHeight: 200, overflow: "hidden" },
+
   btnLinks: {
     backgroundColor: "#F9C29D",
     borderRadius: 5,
