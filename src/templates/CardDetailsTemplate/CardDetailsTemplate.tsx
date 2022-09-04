@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useCardDetailsContext } from "hooks";
+
 import {
   Typography,
   Grid,
@@ -7,7 +7,7 @@ import {
   CardContent,
   CardActions,
 } from "@mui/material";
-import CommitsModal from "components/modal/CommitsModal";
+import CommitsModal from "components/modal/CardExpandedModal";
 import SkeletonCustom from "components/skeleton/SkeletonCustom";
 import { useStyles } from "./style";
 
@@ -16,22 +16,13 @@ type BrachDetails = {
   repo: string;
 };
 
-type BranchDetails = {
-  name: string;
-  commit: {
-    sha: string;
-    url: string;
-  };
-  protected: boolean;
-};
-
 type ModalInfo = {
   owner: string;
   repository: string;
   sha: string;
 };
 
-function CardDetailsTemplate({ owner, repo }: BrachDetails) {
+function CardDetailsTemplate() {
   return <p>oi</p>;
   // const classes = useStyles();
   // const { getOneRepo, cardDetail, loading } = useCardDetailsContext();

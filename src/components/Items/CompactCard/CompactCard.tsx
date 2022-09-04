@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Typography,
   Grid,
@@ -18,16 +19,21 @@ type CardProps = {
 };
 
 function CompactCard({ card, index }: CardProps) {
+  const [paperElevation, setPaperElevation] = useState(2);
   const classes = useStyles();
   const navigate = useNavigate();
 
   return (
-    <Paper elevation={2}>
+    <Paper
+      elevation={paperElevation}
+      onMouseEnter={() => setPaperElevation(20)}
+      onMouseLeave={() => setPaperElevation(2)}
+    >
       <div data-testid={`card-${index}-card`}>
         <Card className={classes.card}>
           <Grid>
             <CardContent>
-              <Typography color="text.primary">
+              <Typography color="text.primary" className={classes.textFields}>
                 <Tooltip title={<h1>{card?._source.title}</h1>} placement="top">
                   <span
                     style={{ fontSize: 15 }}
@@ -38,7 +44,12 @@ function CompactCard({ card, index }: CardProps) {
                 </Tooltip>
               </Typography>
 
-              <Typography sx={{ mt: 1 }} color="text.secondary" variant="body2">
+              <Typography
+                sx={{ mt: 1 }}
+                color="text.secondary"
+                variant="body2"
+                className={classes.textFields}
+              >
                 Autores:{" "}
                 {card._source.authors.length > 0
                   ? card?._source?.authors?.reduce(
@@ -47,7 +58,12 @@ function CompactCard({ card, index }: CardProps) {
                   : "Não encontrei os autores"}
               </Typography>
 
-              <Typography sx={{ mb: 1 }} color="text.secondary" variant="body2">
+              <Typography
+                sx={{ mb: 1 }}
+                color="text.secondary"
+                variant="body2"
+                className={classes.textFields}
+              >
                 Tipos:{" "}
                 {card?._source?.types.length > 0
                   ? card?._source?.types?.reduce(
@@ -57,7 +73,7 @@ function CompactCard({ card, index }: CardProps) {
               </Typography>
 
               <Typography
-                sx={{ mb: 1, maxHeight: 110, overflowY: "scroll" }}
+                sx={{ maxHeight: 100, overflowY: "scroll" }}
                 color="text.secondary"
                 variant="body1"
               >
@@ -65,10 +81,17 @@ function CompactCard({ card, index }: CardProps) {
               </Typography>
             </CardContent>
           </Grid>
-          <Grid style={{ textAlign: "center", marginBottom: 10 }}>
-            <span data-testid={`card-${index}-pop`}>
-              <PopoverCustom card={card} />
-            </span>
+          <Grid
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+              padding: 5,
+            }}
+          >
+            <PopoverCustom card={card} />
+
+            <button className={classes.btnLinks}>Card Details</button>
           </Grid>
         </Card>
       </div>

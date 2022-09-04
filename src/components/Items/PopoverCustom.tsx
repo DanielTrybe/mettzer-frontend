@@ -27,9 +27,9 @@ const useStyles = makeStyles({
     borderRadius: 5,
     border: "none",
     fontSize: "15px",
-    width: "99%",
+    width: "98%",
     padding: 5,
-    margin: 2,
+
     "&:hover": {
       backgroundColor: "#BEC8CE",
     },
@@ -63,7 +63,7 @@ function PopoverCustom({ card, children }: Card) {
   const id = open ? "simple-popover" : undefined;
 
   return (
-    <div>
+    <div style={{ width: "50%" }}>
       <button
         aria-describedby={id}
         className={classes.btnLinks}

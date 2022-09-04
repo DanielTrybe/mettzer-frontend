@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useCardDetailsContext } from "hooks";
+
 import {
   Typography,
   Box,
@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import { useStyles } from "./style";
 import { isValid, format } from "date-fns";
-import AccordionCustom from "./AccordionCustom";
 
 type PopupDetails = {
   modalInfo: {
@@ -24,17 +23,8 @@ type PopupDetails = {
   open: boolean;
 };
 
-function CommitModal({ modalInfo, setOpen, open }: PopupDetails) {
+function CardExpandedModal({ modalInfo, setOpen, open }: PopupDetails) {
   const classes = useStyles();
-  const { getCommits, commits, loadingCommits } = useCardDetailsContext();
-
-  useEffect(() => {
-    if (open) {
-      const { owner, repository, sha } = modalInfo;
-      getCommits(owner, repository, sha);
-    }
-    // eslint-disable-next-line
-  }, [modalInfo?.sha]);
 
   const handleClose = () => setOpen(false);
 
@@ -65,33 +55,8 @@ function CommitModal({ modalInfo, setOpen, open }: PopupDetails) {
             variant="h5"
             sx={{ mb: 2, mt: 1 }}
           >
-            Commits
+            Card Details
           </Typography>
-          {loadingCommits ? (
-            <Backdrop
-              sx={{
-                backgroundColor: "white",
-                mt: 10,
-                zIndex: (theme) => theme.zIndex.drawer + 1,
-              }}
-              open={loadingCommits}
-              onClick={handleClose}
-            >
-              <CircularProgress color="inherit" />
-            </Backdrop>
-          ) : commits.length > 0 ? (
-            commits.map((commit) => (
-              <AccordionCustom
-                title={commit?.commit?.author?.name}
-                subTitle={validDate(commit?.commit?.author?.date)}
-                comment={commit?.commit?.message}
-              />
-            ))
-          ) : (
-            <Typography variant="h6" className={classes.notFoundText}>
-              Não encontrei nenhum commit para esta branch, tente novamente.
-            </Typography>
-          )}
 
           <Grid sx={{ mt: 1, mr: 2 }} className={classes.gridBtn}>
             <Tooltip title="Fechar" placement="left-start">
@@ -110,4 +75,4 @@ function CommitModal({ modalInfo, setOpen, open }: PopupDetails) {
   );
 }
 
-export default CommitModal;
+export default CardExpandedModal;
