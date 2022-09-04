@@ -6,9 +6,11 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 type CardProps = {
   card: { _id: string };
+  delFav?: boolean;
+  setDelFav?: (value: boolean) => void;
 };
 
-function FavoriteCards({ card }: CardProps) {
+function FavoriteCards({ card, delFav, setDelFav }: CardProps) {
   const [isFav, setIsFav] = useState(false);
   const classes = useStyles();
 
@@ -44,6 +46,12 @@ function FavoriteCards({ card }: CardProps) {
         localStorage.setItem("@Mettzer:Favorites", JSON.stringify(organize));
         setIsFav(true);
       }
+    }
+    if (
+      window.location.pathname === "/mettzer-FrontEnd/use-favorites" &&
+      setDelFav
+    ) {
+      setDelFav(!delFav);
     }
   };
 

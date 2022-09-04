@@ -7,12 +7,19 @@ import { cardProps } from "services/context/types";
 type CardProps = {
   index: number;
   card: cardProps;
+  delFav?: boolean;
+  setDelFav?: (value: boolean) => void;
 };
 
-function CardShow({ card, index }: CardProps) {
+function CardShow({ card, index, delFav, setDelFav }: CardProps) {
   return (
     <Grid>
-      <CompactCard card={card} index={index} />
+      <CompactCard
+        card={card}
+        index={index}
+        delFav={delFav}
+        setDelFav={setDelFav}
+      />
     </Grid>
   );
 }
