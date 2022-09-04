@@ -11,7 +11,7 @@ function CardsTemplate() {
   return (
     <>
       <Typography variant="h5" className={classes.title}>
-        Repositories
+        Resultados
       </Typography>
       <Grid className={classes.cards}>
         {loading ? (

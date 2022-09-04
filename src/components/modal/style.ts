@@ -3,8 +3,22 @@ import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles({
   title: {
     textAlign: "center",
-    borderBottom: "1px solid #EAEAEA",
+
     width: "100%",
+  },
+  authors: { textAlign: "center", width: "100%" },
+  types: {
+    width: "100%",
+    textAlign: "center",
+  },
+  boxBorder: {
+    borderBottom: "1px solid #EAEAEA",
+    borderTop: "1px solid #EAEAEA",
+    margin: "10px 0 10px 0",
+  },
+  description: {
+    textAlign: "justify",
+    padding: 5,
   },
   boxStyle: {
     position: "absolute" as "absolute",
@@ -21,6 +35,8 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    overflowY: "scroll",
+    overflowX: "hidden",
   },
   notFoundText: {
     textAlign: "center",

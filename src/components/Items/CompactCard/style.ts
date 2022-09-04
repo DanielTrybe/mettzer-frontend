@@ -1,11 +1,16 @@
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
+  textFields: {
+    maxHeight: 41,
+    minHeight: 41,
+    overflow: "hidden",
+  },
   card: {
     maxWidth: 345,
     minWidth: 345,
-    minHeight: 300,
-    maxHeight: 300,
+    minHeight: 320,
+    maxHeight: 320,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -16,7 +21,7 @@ const useStyles = makeStyles({
     borderRadius: 5,
     border: "none",
     fontSize: "15px",
-    width: "100%",
+    width: "50%",
     padding: 5,
     marginBottom: 3,
     "&:hover": {

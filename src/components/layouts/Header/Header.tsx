@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Box, InputAdornment, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useStyles, CustomTextField } from "./style";
-import JustLogo from "images/jfy-logo-apricot-1280.png";
+import MettzerLogo from "images/logo_mettzer_PRINCIPAL_EDITOR.avif";
 import { useArticlesContext } from "hooks";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
@@ -31,7 +31,7 @@ export default function Header() {
   } = useForm<IFormInputs>({
     resolver: yupResolver(schema),
     defaultValues: {
-      searchTerm: "DanielTrybe",
+      searchTerm: "Mettzer",
     },
   });
 
@@ -51,7 +51,7 @@ export default function Header() {
       >
         <img
           data-testid="header-logo"
-          src={JustLogo}
+          src={MettzerLogo}
           width="100px"
           alt="logo"
           onClick={() => navigate("/")}
@@ -75,7 +75,7 @@ export default function Header() {
               ),
             }}
             inputProps={{ "data-testid": "header-input" }}
-            label="Search for a user from GitHub"
+            label="Search for a scientific article"
             id="outlined-start-adornment"
             sx={{
               m: 1,
