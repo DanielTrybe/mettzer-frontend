@@ -2,11 +2,21 @@ import { Grid, Typography } from "@mui/material";
 import { useArticlesContext } from "hooks";
 import { CardShow } from "components/Items";
 import SkeletonCustom from "components/skeleton/SkeletonCustom";
+import PaginationCustom from "components/Pagination/PaginationCustom";
 import { useStyles } from "./style";
 
 function CardsTemplate() {
   const classes = useStyles();
-  const { cardsList, loading } = useArticlesContext();
+  const {
+    cardsList,
+    loading,
+    setPage,
+    page,
+    pageSize,
+    setPageSize,
+    getArticlesChangePage,
+    numberOfPages,
+  } = useArticlesContext();
 
   return (
     <>
@@ -28,11 +38,17 @@ function CardsTemplate() {
           ))
         ) : (
           <Typography variant="h6" className={classes.notFoundText}>
-            Não encontrei nenhum usuário do GitHub com o termo pesquisado, tente
-            novamente.
+            Não encontrei nada com o termo pesquisado.
           </Typography>
         )}
       </Grid>
+      <PaginationCustom
+        page={page}
+        setPage={setPage}
+        pageSize={pageSize}
+        setPageSize={setPageSize}
+        numberOfPages={numberOfPages}
+      />
     </>
   );
 }

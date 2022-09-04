@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import api from "services/api/api";
 // import { CardsContextProps } from "./interface";
 
-import { CardsContextProps, PageAndSize, SearchList } from "./types";
+import { CardsContextProps, SearchList } from "./types";
 
 export const SeachArticleContext = createContext({} as CardsContextProps);
 
@@ -12,13 +12,37 @@ const SeachArticlesProvider: React.FC<{ children: React.ReactNode }> = ({
   const [cardsList, setCardsList] = useState([] as SearchList);
   const [search, setSearch] = useState("mettzer");
   const [loading, setLoading] = useState(false);
-  const [pageAndSize, setPageAndSize] = useState({
-    page: 1,
-    pageSize: 10,
-  } as PageAndSize);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [numberOfPages, setNumberOfPages] = useState(1);
   const [selectTypeSearch, setSelectTypeSearch] = useState("title" as string);
 
   const getArticles = async () => {
+    setPage(1);
+    setLoading(true);
+    // busca por titulo como padrão
+
+    try {
+      const response = await api.post(
+        `search${process.env.REACT_APP_API_KEY}`,
+        [
+          {
+            query: `${selectTypeSearch}:${search}`,
+            page: `${page}`,
+            pageSize: `${pageSize}`,
+          },
+        ]
+      );
+      setNumberOfPages(Math.round(response.data[0].totalHits / pageSize));
+      setCardsList(response.data);
+    } catch {
+      setCardsList([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getArticlesChangePage = async () => {
     setLoading(true);
     // busca por titulo como padrão
     try {
@@ -27,8 +51,8 @@ const SeachArticlesProvider: React.FC<{ children: React.ReactNode }> = ({
         [
           {
             query: `${selectTypeSearch}:${search}`,
-            page: `${pageAndSize.page}`,
-            pageSize: `${pageAndSize.pageSize}`,
+            page: `${page}`,
+            pageSize: `${pageSize}`,
           },
         ]
       );
@@ -41,18 +65,30 @@ const SeachArticlesProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   useEffect(() => {
+    getArticlesChangePage();
+  }, [page]);
+
+  useEffect(() => {
     getArticles();
-  }, [search]);
+    return () => {
+      setPage(1);
+    };
+  }, [search, pageSize]);
 
   const values = {
     cardsList,
     search,
     setSearch,
     setSelectTypeSearch,
-    setPageAndSize,
+    setPage,
+    page,
+    pageSize,
+    setPageSize,
     selectTypeSearch,
+    numberOfPages,
     getArticles,
     loading,
+    getArticlesChangePage,
   };
 
   return (
