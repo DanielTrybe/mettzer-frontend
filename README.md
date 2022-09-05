@@ -59,12 +59,15 @@ Com isto inicializamos um novo repositório, associamos o remoto com o link do r
 
 # Conteúdo
 
+Menu lateral para facilitar a navegação.
+
+![SnapCrab_NoName_2022-9-5_10-7-30_No-00](https://user-images.githubusercontent.com/78499630/188461677-56c7596c-7ed1-487a-b7af-dc0897923576.png)
+
 ## Página inicial
 
 Consiste em listar a pesquisa feita por um usuário no campo de busca, nesta página será exibido em cards para cada resultado com título, autores, tipo, favorito e links para ir a página.
 
 ![SnapCrab_NoName_2022-9-5_10-5-36_No-00](https://user-images.githubusercontent.com/78499630/188461607-e499dbde-249a-4a20-81ac-edc96b6df639.png)
-![SnapCrab_NoName_2022-9-5_10-7-30_No-00](https://user-images.githubusercontent.com/78499630/188461677-56c7596c-7ed1-487a-b7af-dc0897923576.png)
 
 ## Favoritos
 
