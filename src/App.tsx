@@ -6,10 +6,10 @@ import AppRoutes from "routes/routes";
 
 function App() {
   if (window.location.pathname === "/") {
-    window.location.pathname = "mettzer-FrontEnd";
+    window.location.pathname = "mettzer-frontEnd";
   }
   return (
-    <BrowserRouter basename="mettzer-FrontEnd">
+    <BrowserRouter basename="mettzer-frontEnd">
       <SeachArticlesProvider>
         <AppRoutes />
       </SeachArticlesProvider>

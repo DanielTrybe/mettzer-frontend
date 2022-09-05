@@ -5,7 +5,7 @@ const useStyles = makeStyles({
   header: {
     display: "flex",
     alignItems: "center",
-
+    width: "100%",
     gap: 10,
   },
 });

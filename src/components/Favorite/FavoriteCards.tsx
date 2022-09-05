@@ -21,7 +21,7 @@ function FavoriteCards({ card, delFav, setDelFav }: CardProps) {
     } else {
       const parseCards = JSON.parse(getLocalCard);
       const filterCard = parseCards.find(
-        (favCard: any) => favCard._id === card._id
+        (favCard: cardProps) => favCard._id === card._id
       );
       filterCard ? setIsFav(true) : setIsFav(false);
     }
@@ -32,12 +32,12 @@ function FavoriteCards({ card, delFav, setDelFav }: CardProps) {
     if (getLocalCard) {
       const parseCards = JSON.parse(getLocalCard);
       const filterCard = parseCards.find(
-        (favCard: any) => favCard._id === card._id
+        (favCard: cardProps) => favCard._id === card._id
       );
       if (filterCard) {
         // se achar a pessoa quer deletar
         const filtered = parseCards.filter(
-          (favCard: any) => favCard._id !== card._id
+          (favCard: cardProps) => favCard._id !== card._id
         );
         localStorage.setItem("@Mettzer:Favorites", JSON.stringify(filtered));
         setIsFav(false);
@@ -48,7 +48,7 @@ function FavoriteCards({ card, delFav, setDelFav }: CardProps) {
       }
     }
     if (
-      window.location.pathname === "/mettzer-FrontEnd/use-favorites" &&
+      window.location.pathname === "/mettzer-frontEnd/use-favorites" &&
       setDelFav
     ) {
       setDelFav(!delFav);
