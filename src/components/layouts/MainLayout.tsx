@@ -1,6 +1,7 @@
 import { Container, Grid } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Header from "./Header/Header";
+import SideMenu from "./SideMenu/SideMenu";
 
 export default function MainLayout() {
   return (
@@ -14,7 +15,8 @@ export default function MainLayout() {
           paddingBottom: 10,
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth="xl" sx={{ display: "flex" }}>
+          <SideMenu />
           <Header />
         </Container>
       </Container>
